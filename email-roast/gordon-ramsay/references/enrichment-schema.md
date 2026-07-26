@@ -1,6 +1,6 @@
 # Enrichment Schema
 
-Everything the skill accepts, what it is called elsewhere, and what happens when it is absent. Normalize input to these names before doing anything else. `scripts/validate-input.py` implements the same aliases and the same rules.
+Everything the skill accepts, what it is called elsewhere, and what happens when it is absent. Normalize input to these names before doing anything else.
 
 ---
 

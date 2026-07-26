@@ -179,32 +179,25 @@ SEND
 Six worked examples, one per verdict plus a batch and a refusal:
 [`references/examples.md`](email-roast/gordon-ramsay/references/examples.md).
 
-### Validating a list first
+### Batches
 
-There is a standard-library Python script for checking a batch before you write
-anything — blank values, unrendered `{{merge_tags}}`, bad URLs, malformed emails,
-unsupported verification statuses, duplicate record IDs, suppression flags, stale
-signals.
+Paste a CSV, a JSON array, a Clay export, or a table. You get one result per row
+— verdict, score, subject, body, missing data, send status — in a markdown table
+to read and a JSON array to import. Row order and record IDs survive the trip.
 
-```bash
-python3 email-roast/gordon-ramsay/scripts/validate-input.py prospects.json
-```
-
-Exit 0 clean, 1 critical errors, 2 unreadable file. Add `--json` to pipe it
-somewhere, `--strict` to fail on warnings. Optional — the audit works without it.
+Duplicates get flagged, suppressed contacts get no copy written at all, and
+nothing leaks between rows: evidence found for row 3 never shows up in row 7.
 
 ### Files
 
 ```
 email-roast/gordon-ramsay/
 ├── SKILL.md
-├── references/
-│   ├── scoring-rubric.md
-│   ├── enrichment-schema.md
-│   ├── writing-rules.md
-│   └── examples.md
-└── scripts/
-    └── validate-input.py
+└── references/
+    ├── scoring-rubric.md
+    ├── enrichment-schema.md
+    ├── writing-rules.md
+    └── examples.md
 ```
 
 ## License

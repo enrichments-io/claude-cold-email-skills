@@ -132,15 +132,9 @@ Four touches. Each follow-up must carry a genuine new reason to reply — new ev
 - Emit a markdown table for reading plus a JSON array for importing into Clay or a CRM. Close with counts per verdict and per send status.
 - For 20+ rows, give full detail for the worst five and table rows for the rest.
 
-## Validation script
+## Pre-flight check
 
-`scripts/validate-input.py` checks a prospect/campaign JSON file before you write anything — blank values, unrendered merge tags, bad URLs, malformed emails, unsupported verification statuses, duplicate record IDs, suppression flags, stale sources. Standard library only.
-
-```bash
-python3 scripts/validate-input.py prospects.json
-```
-
-Exit 0 clean or warnings only, 1 critical errors, 2 unreadable input. Add `--json` for machine-readable output, `--strict` to fail on warnings. Run it on any batch of 5+ records. It is a convenience, not a dependency — the audit works without it.
+Before writing anything for a batch, sweep the records for the failures that are cheap to catch and expensive to send: blank values, unrendered merge tags like `{{first_name}}`, malformed emails, email domains that disagree with the company domain, unsupported verification statuses, duplicate record IDs, suppression flags, and sources older than 120 days. Report these before drafting, not after.
 
 ## Refusal
 
